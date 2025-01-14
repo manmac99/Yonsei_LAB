@@ -1,0 +1,16 @@
+1. 의존 패키지 다운하기
+sudo apt update
+sudo apt install build-essential libncurses-dev bison flex libssl-dev libelf-dev
+
+2. 커널 빌드하기(.config 복사하기)
+make menuconfig  # 커널 설정
+make -j$(nproc)  # 병렬 빌드
+sudo make modules_install
+sudo make install
+
+3.  grub update하기
+sudo update-grub
+
+
+
+

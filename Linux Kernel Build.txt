@@ -1,0 +1,39 @@
+uname -r = 리눅스 커널 버전 확인하는 코드
+
+dpkg -s libc6 | grep Arch = 몇 비트인지, 어떤 아키텍쳐인지 확인하는 코드
+
+ls -l /usr/src = 설치된 커널들 확인하는 코드
+
+/usr/src 에 새로 설치할 커널을 다운하기
+{ 커널을 설치하고 옮기는 예시 코드
+$ sudo mv 커널소스파일명 /usr/src/
+$ cd /usr/src
+$ sudo xz -d 커널소스파일명.tar.xz
+
+$ sudo tar xf 커널소스파일명.tar
+
+$ cd 커널소스디렉토리
+
+}
+sudo apt-get update
+sudo apt-get install build-essential libncurses5 libncurses5-dev bin86 kernel-package libssl-dev bison flex libelf-dev
+= 커널 빌드에 필요한 라이브러리들 설치
+
+sudo make menuconfig
+1. 이전 단계에서 복사한 .config 파일을 불러온다.
+2. Load 클릭 후 .config 파일을 불러오기
+3. 추가로 설정할 내용이 있으면 설정하고 아니면 save를 누르고 .config로 저장하기
+
+grep -c processor /proc/cpuinfo = CPU의 코어 개수 확인
+
+sudo make-kpkg --J # --initrd --revision=1.0 kernel_image = #은 cpu 코어 개수
+
+deb파일이 생성되면 아래 명령어를 수행
+sudo dpkg -i 커널이미지파일명 = 커널이미지파일명은 ~~.deb이다
+
+참고 링크 : 
+1. https://devocean.sk.com/blog/techBoardDetail.do?ID=163626
+2. https://vccolombo.github.io/cybersecurity/linux-kernel-qemu-setup/
+
+
+sudo cp "/home/poby/Desktop/Linux Booting IMG/bgrt-fallback.png" /usr/share/plymouth/themes/spinner/bgrt-fallback.png
