@@ -3,8 +3,11 @@ sudo apt update
 sudo apt install build-essential libncurses-dev bison flex libssl-dev libelf-dev
 
 2. 커널 빌드하기(.config 복사하기)
+cp /boot/config-$(uname -r) .config
+make olddefconfig
 make menuconfig  # 커널 설정
 make -j$(nproc)  # 병렬 빌드
+ls -lh arch/x86_64/boot/
 sudo make modules_install
 sudo make install
 
